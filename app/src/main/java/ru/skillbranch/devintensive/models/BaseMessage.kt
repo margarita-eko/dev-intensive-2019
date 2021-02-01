@@ -13,11 +13,11 @@ abstract class BaseMessage(
 
     companion object AbstractFactory {
         var lastId = -1
-        fun makeMessage(from:User, chat:Chat, date:Date, type:String, payload: Any?, isIncoming:Boolean = false):Unit{
+        fun makeMessage(from:User, chat:Chat, date:Date, type:String, payload: Any?, isIncoming:Boolean = false):BaseMessage{
             lastId++
             return when (type) {
                 "image" -> {
-                    val message = ImageMessage(
+                    ImageMessage(
                         "$lastId",
                         from,
                         chat,
@@ -25,12 +25,12 @@ abstract class BaseMessage(
                         date,
                         image = payload as String
                     )
-                    println(message.formatMessage())
+                    //println(message.formatMessage())
                 }
 
                 else -> {
-                    val message = TextMessage("$lastId", from, chat, isIncoming, date, text = payload as String)
-                    println(message.formatMessage())
+                    TextMessage("$lastId", from, chat, isIncoming, date, text = payload as String)
+                    //println(message.formatMessage())
                 }
             }
         }
