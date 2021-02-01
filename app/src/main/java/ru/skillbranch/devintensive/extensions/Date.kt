@@ -56,8 +56,8 @@ fun Date.humanizeDiff(date: Date = Date()): String{
 
     return when (dateDiff){
         in 0 .. 1*SECOND -> "только что"
-        in 1*SECOND .. 45* SECOND -> "${prefix}несколько секунд $postfix"
-        in 45* SECOND .. 75* SECOND -> "${prefix}минуту $postfix"
+        in 1*SECOND .. 45* SECOND -> "${prefix}несколько секунд$postfix"
+        in 45* SECOND .. 75* SECOND -> "${prefix}минуту$postfix"
         in 75* SECOND .. 45* MINUTE -> "${prefix}${TimeUnits.MINUTE.plural((dateDiff/ MINUTE).toInt())}$postfix"
         in 45*MINUTE  .. 75* MINUTE -> "${prefix}час $postfix"
         in 75* MINUTE  .. 22* HOUR -> "${prefix}${TimeUnits.HOUR.plural((dateDiff/ HOUR).toInt())}$postfix"
