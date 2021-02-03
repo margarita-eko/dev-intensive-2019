@@ -19,17 +19,17 @@ fun Activity.hideKeyboard(){
     imm.hideSoftInputFromWindow(view.windowToken, 0)
 }
 
-fun Activity.isKeyboardOpen(rootView: View):Boolean{
-    return keyBoardIsOpen(this,rootView)
+fun Activity.isKeyboardOpen():Boolean{
+    return keyBoardIsOpen(this)
 }
 
-fun Activity.isKeyboardClose(rootView: View):Boolean{
-    return !keyBoardIsOpen(this,rootView)
+fun Activity.isKeyboardClose():Boolean{
+    return !keyBoardIsOpen(this)
 }
 
-private fun keyBoardIsOpen(activity: Activity,contentView: View): Boolean{
+private fun keyBoardIsOpen(activity: Activity): Boolean{
     val r = Rect()
-    //val contentView = activity
+    val contentView = activity.findViewById<View>(android.R.id.content)
     contentView.getWindowVisibleDisplayFrame(r)
     val screenHeight: Int = contentView.rootView.height
     // r.bottom is the position above soft keypad or device button.

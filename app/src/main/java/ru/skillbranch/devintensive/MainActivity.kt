@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         messageEt.setOnKeyListener { v, keyCode, event ->
             if ((event.action == KeyEvent.ACTION_DOWN) && keyCode == KeyEvent.KEYCODE_ENTER){
-                //Log.d("KEYBOARD", this.isKeyboardOpen(this.rootView).toString())
+                //Log.d("KEYBOARD", this.isKeyboardOpen().toString())
                 onClick(sendBtn)
                 this.hideKeyboard()
                 true
@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         sendBtn.setOnClickListener(this)
 
-        //Log.d("KEYBOARD", this.isKeyboardOpen(this.rootView).toString())
+        //Log.d("KEYBOARD", this.isKeyboardOpen().toString())
 
     }
 
