@@ -13,7 +13,7 @@ class Bender(var status:Status = Status.NORMAL, var question: Question = Questio
     fun listenAnswer(answer:String): Pair<String, Triple<Int,Int,Int>>{
 
         val (result, hint) = question.validateAnswer(answer)
-        return if (!result) hint to status.color
+        return if (!result) "$hint\n${question.question}" to status.color
         else
         {
             if (question == Bender.Question.IDLE){
