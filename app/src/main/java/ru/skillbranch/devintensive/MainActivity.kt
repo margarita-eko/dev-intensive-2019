@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val(r,g,b) = benderObj.status.color
         benderImage.setColorFilter(Color.rgb(r,g,b), PorterDuff.Mode.MULTIPLY)
 
-        textTxt.text = benderObj.askQuestion()
+        textTxt.text = savedInstanceState?.getString("QUESTION_TEXT") ?: benderObj.askQuestion()
 
         sendBtn.setOnClickListener(this)
 
@@ -76,9 +76,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
-        super.onSaveInstanceState(outState, outPersistentState)
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
         outState?.putString("STATUS",benderObj.status.name)
+        outState?.putString("QUESTION_TEXT",textTxt.text.toString())
         outState?.putString("QUESTION",benderObj.question.name)
         outState?.putString("MESSAGE",messageEt.text.toString())
     }
