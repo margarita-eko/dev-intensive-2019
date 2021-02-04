@@ -7,8 +7,7 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity"
         android:orientation="vertical"
-        android:gravity="center"
-        android:id="@+id/rootView">
+        android:gravity="center">
 
     <TextView
             android:id="@+id/tv_text"
@@ -51,11 +50,11 @@
                 />
         <ImageView
                 android:id="@+id/iv_send"
-                android:layout_width="@dimen/spacing_large_24"
-                android:layout_height="@dimen/spacing_large_24"
+                android:layout_width="@dimen/image_large_24"
+                android:layout_height="@dimen/image_large_24"
                 android:src="@drawable/ic_send_black_24dp"
                 android:layout_gravity="center"
-                android:layout_marginRight="@dimen/spacing_normal_16"/>
+                android:layout_margin="@dimen/spacing_normal_16"/>
 
     </LinearLayout>
 
