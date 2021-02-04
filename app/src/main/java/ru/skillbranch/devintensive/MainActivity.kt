@@ -1,24 +1,25 @@
 package ru.skillbranch.devintensive
 
+import android.content.Context
 import android.graphics.Color
 import android.graphics.PorterDuff
-import android.graphics.PorterDuffColorFilter
-import android.nfc.Tag
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.skillbranch.devintensive.extensions.hideKeyboard
+import ru.skillbranch.devintensive.extensions.isKeyboardClosed
 import ru.skillbranch.devintensive.extensions.isKeyboardOpen
+import ru.skillbranch.devintensive.extensions.showKeyboard
 import ru.skillbranch.devintensive.models.Bender
-import java.util.*
+
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -72,8 +73,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         sendBtn.setOnClickListener(this)
 
-        //Log.d("KEYBOARD", this.isKeyboardOpen().toString())
+        /*val isKeyboardOpen = savedInstanceState?.getBoolean("KEYBOARD_IS_OPEN") ?: false
 
+        if (isKeyboardOpen && isKeyboardClosed()){
+            //this.showKeyboard()
+            if (messageEt.requestFocus()) {
+                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.showSoftInput(messageEt, InputMethodManager.SHOW_IMPLICIT)
+                Log.d("KEYBOARD", this.isKeyboardOpen().toString())
+            }
+        }*/
+
+        Log.d("KEYBOARD", this.isKeyboardOpen().toString())
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -82,6 +93,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         outState?.putString("QUESTION_TEXT",textTxt.text.toString())
         outState?.putString("QUESTION",benderObj.question.name)
         outState?.putString("MESSAGE",messageEt.text.toString())
+        outState?.putBoolean("KEYBOARD_IS_OPEN",isKeyboardOpen())
+
     }
     override fun onClick(v: View?) {
         if(v?.id == R.id.iv_send){
