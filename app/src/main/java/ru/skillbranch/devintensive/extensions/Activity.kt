@@ -23,7 +23,7 @@ fun Activity.isKeyboardOpen():Boolean{
     return keyBoardIsOpen(this)
 }
 
-fun Activity.isKeyboardClose():Boolean{
+fun Activity.isKeyboardClosed():Boolean{
     return !keyBoardIsOpen(this)
 }
 
