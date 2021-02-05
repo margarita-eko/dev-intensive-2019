@@ -54,7 +54,7 @@
                 android:layout_height="@dimen/image_large_24"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_send_black_24dp"
-                android:layout_margin="@dimen/spacing_normal_16"/>
+                android:layout_marginRight="@dimen/spacing_normal_16"/>
 
     </LinearLayout>
 
