@@ -18,15 +18,15 @@ class Bender(var status:Status = Status.NORMAL, var question: Question = Questio
         {
             if (question == Bender.Question.IDLE){
                 "${question.question}" to status.color
-                //"Отлично - ты справился\n${question.question}" to status.color
+                "Отлично - ты справился\n${question.question}" to status.color
             }else{
                 if(question.answers.contains(answer.toLowerCase())){
                     question = question.nextQuestion()
-                    if (question == Bender.Question.IDLE){
-                        "${question.question}" to status.color
-                    }else {
+                    //if (question == Bender.Question.IDLE){
+                    //    "${question.question}" to status.color
+                    //}else {
                         "Отлично - ты справился\n${question.question}" to status.color
-                    }
+                    //}
                 }else{
                     if (status == Bender.Status.CRITICAL) {
                         status = Bender.Status.NORMAL
