@@ -17,8 +17,8 @@ class Bender(var status:Status = Status.NORMAL, var question: Question = Questio
         else
         {
             if (question == Bender.Question.IDLE){
-                //"${question.question}" to status.color
-                "Отлично - ты справился\n${question.question}" to status.color
+                "${question.question}" to status.color
+                //"Отлично - ты справился\n${question.question}" to status.color
             }else{
                 if(question.answers.contains(answer.toLowerCase())){
                     question = question.nextQuestion()
