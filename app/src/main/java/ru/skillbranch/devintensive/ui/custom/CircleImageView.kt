@@ -94,6 +94,7 @@ class CircleImageView(context: Context, attrs: AttributeSet)  : ImageView(contex
             cvBorderWidth
         )
 
+
         a.recycle()
 
         /*// Set up a default TextPaint object
@@ -107,13 +108,13 @@ class CircleImageView(context: Context, attrs: AttributeSet)  : ImageView(contex
     }
 
     override fun onDraw(canvas: Canvas) {
-        super.onDraw(canvas)
-
+        setImageDrawable(drawable)
         canvas.apply {
             drawCircle(rectF.centerX(), rectF.centerY(), (rectF.height() / 2) - cvBorderWidth, borderPaint);
             clipPath.addCircle(rectF.centerX(), rectF.centerY(), (rectF.height() / 2), Path.Direction.CW);
             clipPath(clipPath)
         }
+        super.onDraw(canvas)
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {

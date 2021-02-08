@@ -3,7 +3,7 @@ package ru.skillbranch.devintensive
 import android.app.Application
 import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.preference.PreferenceManager
+import android.preference.PreferenceManager
 import com.google.android.material.chip.ChipDrawable
 import ru.skillbranch.devintensive.repositories.PreferencesRepository
 
