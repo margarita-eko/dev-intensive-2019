@@ -43,8 +43,8 @@ object PreferencesRepository {
         with(profile){
             putValue(RESPECT to respect)
             putValue(RATING to rating)
-            putValue(FIRST_NAME to firstname)
-            putValue(LAST_NAME to lastname)
+            putValue(FIRST_NAME to firstName)
+            putValue(LAST_NAME to lastName)
             putValue(REPOSITORY to repository)
             putValue(ABOUT to about)
         }
