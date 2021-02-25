@@ -68,4 +68,8 @@ fun Date.humanizeDiff(date: Date = Date()): String{
 
 }
 
+fun Date.shortFormat():String {
+    return ""
+}
+
 
