@@ -2,9 +2,9 @@ package ru.skillbranch.devintensive.models.data
 
 import androidx.annotation.VisibleForTesting
 import ru.skillbranch.devintensive.extensions.shortFormat
-import ru.skillbranch.devintensive.models.myclasses.BaseMessage
-import ru.skillbranch.devintensive.models.myclasses.ImageMessage
-import ru.skillbranch.devintensive.models.myclasses.TextMessage
+import ru.skillbranch.devintensive.models.BaseMessage
+import ru.skillbranch.devintensive.models.ImageMessage
+import ru.skillbranch.devintensive.models.TextMessage
 import ru.skillbranch.devintensive.utils.Utils
 import java.util.*
 
@@ -17,21 +17,18 @@ data class Chat(
 ) {
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     fun unreadableMessageCount(): Int {
-        return 0
-        //TODO implement me
+        return messages.filter { !it.isReaded }.size
     }
 
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     fun lastMessageDate(): Date? {
-        //TODO implement me
-        return Date()
+        return messages.lastOrNull()?.date
     }
 
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     fun lastMessageShort(): Pair<String, String?> = when(val lastMessage = messages.lastOrNull()){
-       //TODO implement me
-        is TextMessage -> if (lastMessage.text == null) "" to lastMessage.from?.firstName else lastMessage.text.toString() to lastMessage.from!!.firstName
-        is ImageMessage -> "${lastMessage.from?.firstName} отправил фото" to lastMessage.from?.firstName
+        is TextMessage -> if (lastMessage.text == null) "" to lastMessage.from.firstName else lastMessage.text.toString() to lastMessage.from.firstName
+        is ImageMessage -> "${lastMessage.from.firstName} отправил фото" to lastMessage.from.firstName
         else -> "" to ""
     }
 

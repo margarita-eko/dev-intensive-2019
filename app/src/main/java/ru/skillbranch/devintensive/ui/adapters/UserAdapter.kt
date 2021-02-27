@@ -1,4 +1,4 @@
-package ru.skillbranch.devintensive.adapters
+package ru.skillbranch.devintensive.ui.adapters
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
