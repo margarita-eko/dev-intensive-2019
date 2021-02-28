@@ -1,7 +1,12 @@
 package ru.skillbranch.devintensive.ui.main
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.View
+import android.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -12,6 +17,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.ui.adapters.ChatAdapter
 import ru.skillbranch.devintensive.ui.adapters.ChatItemTouchHelperCallback
+import ru.skillbranch.devintensive.ui.group.GroupActivity
 import ru.skillbranch.devintensive.viewmodels.MainViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -28,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         initViews()
         initViewModels()
     }
+
 
     private fun initToolBar() {
         setSupportActionBar(toolbar)
@@ -46,8 +53,14 @@ class MainActivity : AppCompatActivity() {
         }
         val divider = DividerItemDecoration(this,DividerItemDecoration.VERTICAL)
         val touchCallback = ChatItemTouchHelperCallback(chatAdapter) {
-            viewModel.addToArchive(it.id)
-            Snackbar.make(rv_chat_list, "Вы точно хотите добавить ${it.title} в архив?", Snackbar.LENGTH_LONG).show()
+            val chatId = it.id
+            viewModel.addToArchive(chatId)
+            val snackbarUndo = Snackbar.make(rv_chat_list, "Вы точно хотите добавить ${it.title} в архив?", Snackbar.LENGTH_LONG)
+
+            snackbarUndo.setAction(R.string.undoTitle, View.OnClickListener { viewModel.restoreFromArchive(chatId)  })
+               // View.OnClickListener { viewModel.restoreFromArchive(chatId) })
+            snackbarUndo.show()
+
         }
         val touchHelper = ItemTouchHelper(touchCallback)
         touchHelper.attachToRecyclerView(rv_chat_list)
@@ -59,7 +72,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         fab.setOnClickListener {
-            viewModel.addItems()
+            //viewModel.addItems()
+            val intent = Intent(this, GroupActivity::class.java)
+            startActivity(intent)
         }
     }
 
